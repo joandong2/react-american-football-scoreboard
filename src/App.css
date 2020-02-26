@@ -110,13 +110,28 @@
   width: 50%;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
+.homeButtons,
+.awayButtons,
+.quarterS {
+    display: flex;
+    align-items: center;
+}
+
+p.headtag {
+    text-transform: uppercase;
+    font-weight: bold;
+    min-width: 100px;
+}
+
+.quarterS button,
 .homeButtons__touchdown,
 .homeButtons__fieldGoal,
 .awayButtons__touchdown,
 .awayButtons__fieldGoal {
-  margin: 1rem;
+  margin: 0.5rem;
   border-radius: 4px;
 }

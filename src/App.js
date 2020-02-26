@@ -9,6 +9,8 @@ function App() {
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
 
+  const [quarter, setQuarter] = useState(1);
+
   return (
     <div className="container">
       <section className="scoreboard">
@@ -26,15 +28,24 @@ function App() {
             <div className="away__score">{awayScore}</div>
           </div>
         </div>
-        <BottomRow />
+        <BottomRow quarter={quarter}/>
       </section>
       <section className="buttons">
+        <div className="quarterS">
+            <p className="headtag">Quarter</p>
+            <button onClick={ (e) => { setQuarter(e.target.getAttribute('data-q')) }} data-q="1">1</button>
+            <button onClick={ (e) => { setQuarter(e.target.getAttribute('data-q')) }} data-q="2">2</button>
+            <button onClick={ (e) => { setQuarter(e.target.getAttribute('data-q')) }} data-q="3">3</button>
+            <button onClick={ (e) => { setQuarter(e.target.getAttribute('data-q')) }} data-q="4">4</button>
+        </div>
         <div className="homeButtons">
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
+          <p className="headtag">Home</p>
           <button className="homeButtons__touchdown" onClick={ () => { setHomeScore(homeScore+7); }}>Home Touchdown</button>
           <button className="homeButtons__fieldGoal" onClick={ () => { setHomeScore(homeScore+3); }}>Home Field Goal</button>
         </div>
         <div className="awayButtons">
+          <p className="headtag">Away</p>
           <button className="awayButtons__touchdown" onClick={ () => { setAwayScore(awayScore+7); }}>Away Touchdown</button>
           <button className="awayButtons__fieldGoal" onClick={ () => { setAwayScore(awayScore+3); }}>Away Field Goal</button>
         </div>
