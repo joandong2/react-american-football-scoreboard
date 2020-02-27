@@ -16,18 +16,15 @@ function App() {
 
   useEffect(() => {
     let duration = 720, minutes, seconds;
-    //let tempDuration;
     let timeCount = null;
 
     document.querySelector('.reset').addEventListener('click', () => {
         duration = 720;
         setTimer('12:00');
-        //console.log(duration);
         clearInterval(timeCount);
     });
 
     document.querySelector('.stop').addEventListener('click', () => {
-        //tempDuration = duration;
         clearInterval(timeCount);
     });
 
