@@ -15,7 +15,8 @@ function App() {
   const [timer, setTimer] = useState('12:00');
 
   useEffect(() => {
-    let duration = 720, minutes, seconds, tempDuration;
+    let duration = 720, minutes, seconds;
+    //let tempDuration;
     let timeCount = null;
 
     document.querySelector('.reset').addEventListener('click', () => {
@@ -26,7 +27,7 @@ function App() {
     });
 
     document.querySelector('.stop').addEventListener('click', () => {
-        tempDuration = duration;
+        //tempDuration = duration;
         clearInterval(timeCount);
     });
 
@@ -49,32 +50,7 @@ function App() {
         }, 1000);
     });
 
-    
-
     return () => clearInterval(timeCount);
-
-
-    // const startTime = () => {
-    //     minutes = parseInt(duration / 60, 10);
-    //     seconds = parseInt(duration % 60, 10);
-
-    //     minutes = minutes < 10 ? "0" + minutes : minutes;
-    //     seconds = seconds < 10 ? "0" + seconds : seconds;
-
-    //     // console.log(duration--);
-    //     // console.log(minutes);
-    //     // console.log(seconds);
-    //     duration--;
-    //     setTimer(minutes.toString()+':'+seconds.toString());
-        
-    //     if (duration < 0) {
-    //         setTimer('00:00');
-    //     }
-    // };
-
-    // setInterval(startTime(),1000);
-
-
   }, []);
 
   return (
