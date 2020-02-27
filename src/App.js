@@ -14,38 +14,67 @@ function App() {
   const [ballOn, setBallOn] = useState(0);
   const [timer, setTimer] = useState('12:00');
 
-//   useEffect(() => {
-//     const timer = setInterval(() => setTimer(e => e + 1), 1000); 
-//     return () => clearInterval(timer);
-//   }, []);
-
   useEffect(() => {
-    let duration = 720;
-    let minutes, seconds;
-    const timeCount = setInterval(function () {
+    let duration = 720, minutes, seconds, tempDuration;
+    let timeCount = null;
 
-        minutes = parseInt(duration / 60, 10);
-        seconds = parseInt(duration % 60, 10);
+    document.querySelector('.reset').addEventListener('click', () => {
+        duration = 720;
+        setTimer('12:00');
+        //console.log(duration);
+        clearInterval(timeCount);
+    });
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+    document.querySelector('.stop').addEventListener('click', () => {
+        tempDuration = duration;
+        clearInterval(timeCount);
+    });
 
-        console.log(duration--);
-        console.log(minutes);
-        console.log(seconds);
-        
-        setTimer(minutes.toString()+':'+seconds.toString());
-        
-        // if (timer.duration < 0) {
-        //     setTimer({
-        //         minutes: '00',
-        //         seconds: '00'
-        //     });
-        // }
-        
-    }, 1000);
+    document.querySelector('.start').addEventListener('click', () => {
+        timeCount = setInterval(() => {
+            
+            minutes = parseInt(duration / 60, 10);
+            seconds = parseInt(duration % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            duration--;
+            setTimer(minutes.toString()+':'+seconds.toString());
+            
+            if (duration < 0) {
+                setTimer('00:00');
+            }
+    
+        }, 1000);
+    });
+
+    
 
     return () => clearInterval(timeCount);
+
+
+    // const startTime = () => {
+    //     minutes = parseInt(duration / 60, 10);
+    //     seconds = parseInt(duration % 60, 10);
+
+    //     minutes = minutes < 10 ? "0" + minutes : minutes;
+    //     seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    //     // console.log(duration--);
+    //     // console.log(minutes);
+    //     // console.log(seconds);
+    //     duration--;
+    //     setTimer(minutes.toString()+':'+seconds.toString());
+        
+    //     if (duration < 0) {
+    //         setTimer('00:00');
+    //     }
+    // };
+
+    // setInterval(startTime(),1000);
+
+
   }, []);
 
   return (
@@ -70,9 +99,9 @@ function App() {
       <section className="buttons">
         <div className="timerButtons">
             <p className="headtag">Timer</p>
-            <button>Start</button>
-            <button>Stop</button>
-            <button>Reset</button>
+            <button className="start">Start</button>
+            <button className="stop">Stop</button>
+            <button className="reset">Reset</button>
         </div>
         <div className="quarterS">
             <p className="headtag">Quarter</p>
