@@ -12,7 +12,43 @@ function App() {
   const [down, setDown] = useState(1);
   const [toGo, setToGo] = useState(10);
   const [ballOn, setBallOn] = useState(0);
-  //const [timer, setTimer] = useState('12:00');
+  const [timer, setTimer] = useState('12:00');
+
+  useEffect(() => {
+    let duration = 720, minutes, seconds;
+    let timeCount = null;
+
+    document.querySelector('.reset').addEventListener('click', () => {
+        duration = 720;
+        setTimer('12:00');
+        clearInterval(timeCount);
+    });
+
+    document.querySelector('.stop').addEventListener('click', () => {
+        clearInterval(timeCount);
+    });
+
+    document.querySelector('.start').addEventListener('click', () => {
+        timeCount = setInterval(() => {
+            
+            minutes = parseInt(duration / 60, 10);
+            seconds = parseInt(duration % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            duration--;
+            setTimer(minutes.toString()+':'+seconds.toString());
+            
+            if (duration < 0) {
+                setTimer('00:00');
+            }
+    
+        }, 1000);
+    });
+
+    return () => clearInterval(timeCount);
+  }, []);
 
   return (
     <div className="container">
@@ -25,7 +61,7 @@ function App() {
 
             <div className="home__score">{homeScore}</div>
           </div>
-          <div className="timer">12:00</div>
+          <div className="timer">{timer}</div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
             <div className="away__score">{awayScore}</div>
