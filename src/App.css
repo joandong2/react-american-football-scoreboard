@@ -71,6 +71,7 @@
   background-color: var(--black);
   border: 2px solid white;
   border-radius: 6px;
+  min-width: 260px;
 }
 
 .bottomRow {
@@ -110,13 +111,44 @@
   width: 50%;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
 }
 
+.timerButtons,
+.homeButtons,
+.awayButtons,
+.quarterS,
+.downS {
+    display: flex;
+    align-items: center;
+}
+
+p.headtag {
+    text-transform: uppercase;
+    font-weight: bold;
+    min-width: 100px;
+}
+
+p.no-width {
+    min-width: 0;
+    margin: 0 10px;
+}
+
+input {
+    padding: 10px;
+    font-size: 1.6rem;
+    max-width: 50px;
+}
+
+.timerButtons button,
+.quarterS button,
+.downS button,
+.resetButtons,
 .homeButtons__touchdown,
 .homeButtons__fieldGoal,
 .awayButtons__touchdown,
 .awayButtons__fieldGoal {
-  margin: 1rem;
+  margin: 0.5rem;
   border-radius: 4px;
 }
